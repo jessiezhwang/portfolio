@@ -52,7 +52,7 @@ export default function Navbar() {
           className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
           aria-label="Back to top"
         >
-          JWfff
+          JW
         </button>
 
         {/* Nav links + toggle */}
