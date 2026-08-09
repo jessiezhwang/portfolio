@@ -1,8 +1,0 @@
-{
-  "name": "jessiewang-projects",
-  "version": "1.0.0",
-  "scripts": {
-    "build": "cd portfolio && npm install && npm run build",
-    "vercel-build": "cd portfolio && npm install && npm run build"
-  }
-}
