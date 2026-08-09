@@ -10,7 +10,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     group: "Frameworks & Libraries",
-    skills: ["React", "Next.js", "Tailwind CSS", "Pygame"],
+    skills: ["React", "Next.js", "Tailwind CSS", "Pygame", "OpenCV", "PySide6"],
   },
   {
     group: "Tools",
@@ -18,7 +18,6 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     group: "AI / ML",
-    // TODO: Add your AI/ML tools and frameworks here
-    skills: ["— add your tools here —"],
+    skills: ["MediaPipe", "Computer Vision", "Hand Landmark Detection"],
   },
 ];

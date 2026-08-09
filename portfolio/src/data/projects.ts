@@ -16,24 +16,24 @@ export const projects: Project[] = [
       "A classic Minesweeper game built with Python and Pygame — 15×15 grid, 30 mines, flag support. Compiled to WebAssembly with Pygbag so you can play it right in the browser.",
     techStack: ["Python", "Pygame", "Pygbag", "WebAssembly"],
     // TODO: Replace with your real GitHub repo URL
-    githubUrl: "https://github.com/jessiewang",
+    githubUrl: "https://github.com/jessiezhwang/portfolio",
     isPlayable: true,
     thumbnailColor: "#4f46e5",
     thumbnailTextColor: "#c7d2fe",
   },
   {
-    // TODO: Replace with a real project
-    title: "Project Placeholder 1",
+    title: "Hand Volume Controller",
     description:
-      "Description of a future project. Replace this card with your real project — title, what it does, and why you built it.",
-    techStack: ["Python", "React"],
-    githubUrl: "#",
-    thumbnailColor: "#0891b2",
-    thumbnailTextColor: "#a5f3fc",
+      "A macOS desktop app that controls system volume using real-time hand gesture recognition through your webcam. Thumbs up raises the volume, thumbs down lowers it, and a peace sign sets it to 100%. Built with Python, MediaPipe for hand landmark detection, OpenCV for camera input, and PySide6 for the GUI.",
+    techStack: ["Python", "MediaPipe", "OpenCV", "PySide6"],
+    // TODO: Replace with your real GitHub repo URL for HandTrackingMac
+    githubUrl: "https://github.com/jessiezhwang/portfolio",
+    thumbnailColor: "#7c3aed",
+    thumbnailTextColor: "#ddd6fe",
   },
   {
     // TODO: Replace with a real project
-    title: "Project Placeholder 2",
+    title: "Project Placeholder",
     description:
       "Another future project placeholder. Swap this out once you have more projects to show. Aim for 3–5 total.",
     techStack: ["TypeScript", "Next.js"],
