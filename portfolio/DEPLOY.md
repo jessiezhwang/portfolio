@@ -27,8 +27,11 @@ Replace `YOUR_GITHUB_USERNAME` with your actual GitHub username.
 1. Go to [vercel.com](https://vercel.com) and sign up / log in with your GitHub account
 2. Click **"Add New Project"**
 3. Import your `portfolio` repository from GitHub
-4. Vercel auto-detects Next.js — leave all settings as-is
-5. Click **"Deploy"**
+4. **Important:** Set the **Root Directory** to `portfolio` (click "Edit" next to the root directory field)
+   - The repo root contains multiple projects (Minesweeper, HandTrackingMac, portfolio)
+   - Vercel needs to know the Next.js app is inside `portfolio/`, not at the root
+5. Vercel auto-detects Next.js once the root directory is set — leave all other settings as-is
+6. Click **"Deploy"**
 
 Your site will be live at a `*.vercel.app` URL within ~60 seconds. Every future `git push` to `main` will auto-deploy.
 
