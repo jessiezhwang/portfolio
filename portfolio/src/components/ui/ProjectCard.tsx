@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, Play } from "lucide-react";
+import { ExternalLink, Play, Video } from "lucide-react";
 import { type Project } from "@/data/projects";
 import SkillBadge from "./SkillBadge";
 import MinesweeperEmbed from "./MinesweeperEmbed";
+import HandTrackingEmbed from "./HandTrackingEmbed";
 import { cn } from "@/lib/utils";
 
 function GitHubIcon({ size = 15 }: { size?: number }) {
@@ -21,7 +22,7 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
-  const [showGame, setShowGame] = useState(false);
+  const [showEmbed, setShowEmbed] = useState(false);
 
   return (
     <motion.article
@@ -37,7 +38,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     >
       {/* Thumbnail */}
       <div
-        className="h-40 flex items-center justify-center"
+        className="h-40 flex items-center justify-center relative"
         style={{ backgroundColor: project.thumbnailColor }}
       >
         <span
@@ -46,6 +47,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         >
           {project.title}
         </span>
+        {/* Web demo badge */}
+        {project.isWebDemo && (
+          <span className="absolute top-3 right-3 text-xs font-medium px-2 py-0.5 rounded-full bg-black/30 text-white/80 backdrop-blur-sm">
+            Gesture Demo
+          </span>
+        )}
       </div>
 
       {/* Content */}
@@ -67,15 +74,32 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         {/* Links */}
-        <div className="flex items-center gap-3 pt-1">
+        <div className="flex flex-wrap items-center gap-3 pt-1">
           {project.isPlayable && (
             <button
-              onClick={() => setShowGame((v) => !v)}
+              onClick={() => setShowEmbed((v) => !v)}
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white transition-colors duration-150"
             >
               <Play size={13} />
-              {showGame ? "Hide Game" : "Play in Browser"}
+              {showEmbed
+                ? "Hide"
+                : project.isWebDemo
+                ? "Try Gesture Demo"
+                : "Play in Browser"}
             </button>
+          )}
+          {/* TODO: Uncomment when demoVideoUrl is set */}
+          {project.demoVideoUrl && (
+            <a
+              href={project.demoVideoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Watch ${project.title} demo video`}
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors duration-150"
+            >
+              <Video size={15} />
+              Watch Demo
+            </a>
           )}
           {project.githubUrl && project.githubUrl !== "#" && (
             <a
@@ -104,10 +128,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
       </div>
 
-      {/* Minesweeper embed — expands below card content */}
-      {project.isPlayable && showGame && (
+      {/* Embeds */}
+      {showEmbed && (
         <div className="border-t border-zinc-200 dark:border-zinc-700">
-          <MinesweeperEmbed />
+          {project.isWebDemo ? (
+            <HandTrackingEmbed />
+          ) : (
+            <MinesweeperEmbed />
+          )}
         </div>
       )}
     </motion.article>

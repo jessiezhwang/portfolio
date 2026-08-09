@@ -5,6 +5,8 @@ export interface Project {
   githubUrl?: string;
   liveUrl?: string;
   isPlayable?: boolean;
+  isWebDemo?: boolean;       // true = browser demo (not full functionality)
+  demoVideoUrl?: string;     // TODO: add YouTube/Loom URL when you record a demo
   thumbnailColor: string;
   thumbnailTextColor?: string;
 }
@@ -24,10 +26,14 @@ export const projects: Project[] = [
   {
     title: "Hand Volume Controller",
     description:
-      "A macOS desktop app that controls system volume using real-time hand gesture recognition through your webcam. Thumbs up raises the volume, thumbs down lowers it, and a peace sign sets it to 100%. Built with Python, MediaPipe for hand landmark detection, OpenCV for camera input, and PySide6 for the GUI.",
+      "A macOS desktop app that controls your system volume using real-time hand gesture recognition — thumbs up raises it, thumbs down lowers it, peace sign sets it to 100%. Built with Python, MediaPipe, OpenCV, and PySide6. Note: browsers block system volume control for security, so the in-browser demo only shows live gesture detection. Download the desktop app to get the full experience.",
     techStack: ["Python", "MediaPipe", "OpenCV", "PySide6"],
     // TODO: Replace with your real GitHub repo URL for HandTrackingMac
     githubUrl: "https://github.com/jessiezhwang/portfolio",
+    isPlayable: true,
+    isWebDemo: true,
+    // TODO: Add a screen recording of the desktop app and paste the URL here
+    // demoVideoUrl: "https://youtube.com/...",
     thumbnailColor: "#7c3aed",
     thumbnailTextColor: "#ddd6fe",
   },

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hand Volume Controller</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- Header -->
+    <div class="header">
+      <h1>Hand Volume Controller</h1>
+      <p class="subtitle">Control volume with hand gestures — no install required</p>
+    </div>
+
+    <!-- Main content -->
+    <div class="main">
+
+      <!-- Camera + canvas overlay -->
+      <div class="camera-wrapper">
+        <video id="video" autoplay playsinline muted></video>
+        <canvas id="canvas"></canvas>
+        <div id="camera-status" class="camera-status">
+          <div class="spinner"></div>
+          <span>Starting camera...</span>
+        </div>
+      </div>
+
+      <!-- Controls panel -->
+      <div class="panel">
+
+        <!-- Volume display -->
+        <div class="volume-section">
+          <div class="volume-header">
+            <span class="volume-label">Volume</span>
+            <span id="volume-number" class="volume-number">50%</span>
+          </div>
+          <div class="volume-bar-track">
+            <div id="volume-bar-fill" class="volume-bar-fill" style="width: 50%"></div>
+          </div>
+        </div>
+
+        <!-- Gesture display -->
+        <div class="gesture-section">
+          <div class="gesture-row">
+            <span class="gesture-tag">Detected</span>
+            <span id="gesture-display" class="gesture-value">Waiting...</span>
+          </div>
+          <div class="gesture-row">
+            <span class="gesture-tag">Action</span>
+            <span id="action-display" class="action-value">—</span>
+          </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions">
+          <p class="instructions-title">Gestures</p>
+          <div class="instruction-item">
+            <span class="gesture-emoji">👍</span>
+            <span>Thumbs up — raise volume</span>
+          </div>
+          <div class="instruction-item">
+            <span class="gesture-emoji">👎</span>
+            <span>Thumbs down — lower volume</span>
+          </div>
+          <div class="instruction-item">
+            <span class="gesture-emoji">✌️</span>
+            <span>Peace sign — set to 100%</span>
+          </div>
+        </div>
+
+        <!-- Note -->
+        <p class="note">
+          Browsers block system volume control for security reasons — this demo detects your hand gestures in real time using MediaPipe WebAssembly. Download the desktop app to control your actual system volume.
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MediaPipe via CDN -->
+  <script type="module" src="main.js"></script>
+</body>
+</html>
