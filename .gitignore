@@ -1,0 +1,41 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Kiro / Codex IDE folders
+.codex/
+.kiro/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+dist/
+build/
+*.so
+.Python
+venv/
+.venv/
+env/
+.env
+
+# PyCharm / IntelliJ
+.idea/
+
+# Node / Next.js
+portfolio/node_modules/
+portfolio/.next/
+portfolio/out/
+portfolio/.env*.local
+portfolio/npm-debug.log*
+portfolio/yarn-debug.log*
+portfolio/yarn-error.log*
+
+# Misc
+*.log
+.cache/
