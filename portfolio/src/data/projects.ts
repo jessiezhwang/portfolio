@@ -26,7 +26,7 @@ export const projects: Project[] = [
   {
     title: "Hand Volume Controller",
     description:
-      "A macOS desktop app that controls your system volume using real-time hand gesture recognition — thumbs up raises it, thumbs down lowers it, peace sign sets it to 100%. Built with Python, MediaPipe, OpenCV, and PySide6. Note: browsers block system volume control for security, so the in-browser demo only shows live gesture detection. Download the desktop app to get the full experience.",
+      "A macOS desktop app that controls system volume using hand gestures via webcam — thumbs up, thumbs down, or peace sign. Built with Python, MediaPipe, OpenCV, and PySide6.",
     techStack: ["Python", "MediaPipe", "OpenCV", "PySide6"],
     // TODO: Replace with your real GitHub repo URL for HandTrackingMac
     githubUrl: "https://github.com/jessiezhwang/portfolio",

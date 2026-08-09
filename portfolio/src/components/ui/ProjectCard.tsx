@@ -61,7 +61,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-2">
             {project.title}
           </h3>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          <p className="text-sm text-zinc-900 dark:text-zinc-300 leading-relaxed">
             {project.description}
           </p>
         </div>
