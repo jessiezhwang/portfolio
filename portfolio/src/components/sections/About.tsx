@@ -36,7 +36,7 @@ export default function About() {
                 systems, and how software shapes the world around us.
               </p>
               <p>
-                When I&apos;m not coding, I&apos;m sailing a 420 boat, stargazing, or learning
+                When I&apos;m not coding, I&apos;m either sailing a 420 boat, stargazing, or learning
                 Astronomy! In my next project, I plan to incorporate both of my interests: Astronomy and Programming.{" "}
                 {/* TODO: Add a personal detail here — a hobby, a goal, etc. */}
               </p>
