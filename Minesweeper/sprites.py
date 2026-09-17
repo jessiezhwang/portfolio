@@ -41,8 +41,10 @@ class Board:
     def place_mines(self):
         for _ in range(AMOUNT_MINES):
             while True:
-                x = random.randint(0, ROWS-1)
-                y = random.randint(0, COLS-1)
+                # board_list is COLS lists of ROWS tiles each, so x indexes
+                # against COLS and y against ROWS.
+                x = random.randint(0, COLS-1)
+                y = random.randint(0, ROWS-1)
 
                 if self.board_list[x][y].type == ".":
                     self.board_list[x][y].image = tile_mine
@@ -50,8 +52,8 @@ class Board:
                     break
 
     def place_clues(self):
-        for x in range(ROWS):
-            for y in range(COLS):
+        for x in range(COLS):
+            for y in range(ROWS):
                 if self.board_list[x][y].type != "X":
                     total_mines = self.check_neighbours(x, y)
                     if total_mines > 0:
@@ -61,7 +63,7 @@ class Board:
 
     @staticmethod
     def is_inside(x, y):
-        return 0 <= x < ROWS and 0 <= y < COLS
+        return 0 <= x < COLS and 0 <= y < ROWS
 
     def check_neighbours(self, x, y):
         total_mines = 0
@@ -92,8 +94,8 @@ class Board:
 
         self.board_list[x][y].revealed = True
 
-        for row in range(max(0, x-1), min(ROWS-1, x+1) + 1):
-            for col in range(max(0, y-1), min(COLS-1, y+1) + 1):
+        for row in range(max(0, x-1), min(COLS-1, x+1) + 1):
+            for col in range(max(0, y-1), min(ROWS-1, y+1) + 1):
                 if (row, col) not in self.dug:
                     self.dig(row, col)
         return True
