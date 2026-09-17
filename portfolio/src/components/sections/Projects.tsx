@@ -23,8 +23,7 @@ export default function Projects() {
             Things I&apos;ve built.
           </h2>
           <p className="text-zinc-500 dark:text-zinc-400 text-lg max-w-xl">
-            A mix of real projects and placeholders — the Minesweeper game is
-            fully playable in your browser.
+            My completed projects, all playable/testable in browser!
           </p>
         </motion.div>
 
@@ -42,7 +41,7 @@ export default function Projects() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </div>ß
     </section>
   );
 }
