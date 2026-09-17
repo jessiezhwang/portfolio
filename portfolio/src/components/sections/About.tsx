@@ -24,23 +24,20 @@ export default function About() {
             <div className="space-y-4 text-zinc-600 dark:text-zinc-400 text-lg leading-relaxed">
               {/* TODO: Replace with your real bio */}
               <p>
-                I&apos;m Jessie Wang, a high school student passionate about
-                computer science and artificial intelligence. I love building
-                things that live on the internet — from games to tools that
-                solve real problems.
+                I&apos;m Jessie Wang, a high school student who&apos;s passionate about
+                programming. I love creating projects that challenge me to learn more, whether its a building games or designing other interactive experiences.
               </p>
               <p>
-                My interest in CS started with{" "}
+                My interest in programming started with learning{" "}
                 <span className="text-zinc-800 dark:text-zinc-200 font-medium">
-                  Python and game development
+                  Python
                 </span>
                 , and has grown into a curiosity about machine learning, AI
                 systems, and how software shapes the world around us.
               </p>
               <p>
-                When I&apos;m not coding, I&apos;m exploring new ideas, learning
-                new tools, and working toward programs that push me further in
-                the field.{" "}
+                When I&apos;m not coding, I&apos;m sailing a 420 boat, stargazing, or learning
+                Astronomy! In my next project, I plan to incorporate both of my interests: Astronomy and Programming.{" "}
                 {/* TODO: Add a personal detail here — a hobby, a goal, etc. */}
               </p>
             </div>
