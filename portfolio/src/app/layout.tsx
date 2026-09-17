@@ -12,7 +12,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Jessie Wang — Portfolio",
   description:
-    "Student developer and AI enthusiast. Projects, skills, and a playable Minesweeper game — built with Next.js.",
+    "Student developer and AI enthusiast. Projects, skills, and a playable Minesweeper game.",
   metadataBase: new URL("https://jessiewang.dev"),
   openGraph: {
     title: "Jessie Wang — Portfolio",

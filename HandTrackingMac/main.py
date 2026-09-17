@@ -8,7 +8,7 @@ import mediapipe as mp
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 
-from PySide6.QtCore import Qt, QTimer
+from PySide6.QtCore import Qt, QTimer, QProcess
 from PySide6.QtGui import QImage, QPixmap, QFont
 from PySide6.QtWidgets import (
     QApplication,
@@ -21,20 +21,18 @@ from PySide6.QtWidgets import (
 )
 
 
-# =========================================================
-# SETTINGS
-# =========================================================
+# settings
+PROCESSING_FPS = 60
+VOLUME_SYNC_INTERVAL_MS = 100
 
-PROCESSING_FPS = 20
+CAMERA_WIDTH = 320 
+CAMERA_HEIGHT = 240 
 
-CAMERA_WIDTH = 320
-CAMERA_HEIGHT = 240
+VOLUME_INCREASE_AMOUNT = 2
+VOLUME_DECREASE_AMOUNT = 2
 
-VOLUME_INCREASE_AMOUNT = 5
-VOLUME_DECREASE_AMOUNT = 5
-
-THUMBS_UP_INTERVAL = 0.1
-THUMBS_DOWN_INTERVAL = 0.1
+THUMBS_UP_INTERVAL = 0.2
+THUMBS_DOWN_INTERVAL = 0.2
 
 REQUIRED_GESTURE_CHECKS = 3
 
@@ -52,7 +50,7 @@ if not MODEL_PATH.exists():
 # MAC VOLUME
 # =========================================================
 
-def get_mac_volume():
+def get_mac_volume(default=50):
     try:
         result = subprocess.check_output(
             [
@@ -67,7 +65,7 @@ def get_mac_volume():
 
     except Exception as error:
         print("Could not read volume:", error)
-        return 50
+        return default
 
 
 def set_mac_volume(volume):
@@ -87,17 +85,14 @@ def set_mac_volume(volume):
         print("Could not change volume:", error)
 
 
-# =========================================================
-# MEDIAPIPE
-# =========================================================
-
+# Mediapipe
 base_options = python.BaseOptions(
     model_asset_path=str(MODEL_PATH)
 )
 
 options = vision.HandLandmarkerOptions(
     base_options=base_options,
-    running_mode=vision.RunningMode.IMAGE,
+    running_mode=vision.RunningMode.VIDEO,
     num_hands=1,
     min_hand_detection_confidence=0.55,
     min_hand_presence_confidence=0.55,
@@ -109,10 +104,7 @@ hand_landmarker = vision.HandLandmarker.create_from_options(
 )
 
 
-# =========================================================
-# HAND FUNCTIONS
-# =========================================================
-
+# Hand Functions
 def point_distance(point_1, point_2):
     return (
         (point_1.x - point_2.x) ** 2
@@ -160,7 +152,7 @@ def recognize_gesture(landmarks):
     thumb_tip = landmarks[4]
     index_base = landmarks[5]
 
-    # PEACE SIGN = 100%
+    # Peace Sign = 100%
     index_open = finger_is_open(landmarks, 8, 6)
     middle_open = finger_is_open(landmarks, 12, 10)
     ring_curled_for_peace = finger_is_curled(landmarks, 16, 14)
@@ -302,6 +294,19 @@ class HandVolumeWindow(QWidget):
 
         self.camera = cv2.VideoCapture(0)
 
+        # Ask the camera for the target capture rate. Some webcams/macOS
+        # drivers may cap this lower, but setting it makes the intent explicit.
+        self.camera.set(
+            cv2.CAP_PROP_FPS,
+            PROCESSING_FPS
+        )
+
+        # Keep latency low if the backend supports this property.
+        self.camera.set(
+            cv2.CAP_PROP_BUFFERSIZE,
+            1
+        )
+
         self.camera.set(
             cv2.CAP_PROP_FRAME_WIDTH,
             CAMERA_WIDTH
@@ -314,16 +319,29 @@ class HandVolumeWindow(QWidget):
 
         self.previous_gesture = ""
         self.gesture_check_count = 0
-        self.confirmed_gesture = "Waiting"
+        self.confirmed_gesture = "No hand"
 
         self.peace_sign_used = False
 
         self.last_thumbs_up_time = 0
         self.last_thumbs_down_time = 0
 
+        # Reading macOS volume launches osascript, so do it once instead of
+        # launching a subprocess on every camera frame.
+        self.current_volume = get_mac_volume()
+
+        # Used to ignore system volume readings that started before the app
+        # last changed the volume, so stale values don't undo a gesture.
+        self.last_volume_set_time = 0
+        self.volume_read_start_time = 0
+
         self.build_gui()
 
         self.timer = QTimer(self)
+
+        self.timer.setTimerType(
+            Qt.PreciseTimer
+        )
 
         self.timer.timeout.connect(
             self.update_camera
@@ -331,6 +349,24 @@ class HandVolumeWindow(QWidget):
 
         self.timer.start(
             int(1000 / PROCESSING_FPS)
+        )
+
+        # Read system volume asynchronously so keyboard changes appear almost
+        # immediately without blocking camera or gesture processing.
+        self.volume_process = QProcess(self)
+
+        self.volume_process.readyReadStandardOutput.connect(
+            self.handle_system_volume
+        )
+
+        self.volume_sync_timer = QTimer(self)
+
+        self.volume_sync_timer.timeout.connect(
+            self.sync_system_volume
+        )
+
+        self.volume_sync_timer.start(
+            VOLUME_SYNC_INTERVAL_MS
         )
 
 
@@ -431,7 +467,7 @@ class HandVolumeWindow(QWidget):
         )
 
         self.volume_bar.setValue(
-            get_mac_volume()
+            self.current_volume
         )
 
         layout.addWidget(
@@ -441,7 +477,7 @@ class HandVolumeWindow(QWidget):
 
         # GESTURE
         self.gesture_label = QLabel(
-            "Gesture: Waiting"
+            "Gesture: No hand"
         )
 
         self.gesture_label.setAlignment(
@@ -495,8 +531,8 @@ class HandVolumeWindow(QWidget):
 
         # INSTRUCTIONS
         self.instructions_label = QLabel(
-            "Thumbs up = increase volume by 5%\n"
-            "Thumbs down = decrease volume by 5%\n"
+            f"Thumbs up = increase volume by {VOLUME_INCREASE_AMOUNT}%\n"
+            f"Thumbs down = decrease volume by {VOLUME_DECREASE_AMOUNT}%\n"
             "Peace sign = set volume to 100%\n"
         )
 
@@ -543,6 +579,53 @@ class HandVolumeWindow(QWidget):
         )
 
 
+    def sync_system_volume(self):
+
+        if (
+            self.volume_process.state()
+            != QProcess.ProcessState.NotRunning
+        ):
+            return
+
+        self.volume_read_start_time = time.monotonic()
+
+        self.volume_process.start(
+            "osascript",
+            [
+                "-e",
+                "output volume of (get volume settings)"
+            ]
+        )
+
+
+    def handle_system_volume(self):
+
+        output = bytes(
+            self.volume_process.readAllStandardOutput()
+        ).decode().strip()
+
+        try:
+            system_volume = int(output)
+        except ValueError:
+            return
+
+        if self.volume_read_start_time < self.last_volume_set_time:
+            return
+
+        if system_volume == self.current_volume:
+            return
+
+        self.current_volume = system_volume
+
+        self.volume_label.setText(
+            f"Current volume: {system_volume}%"
+        )
+
+        self.volume_bar.setValue(
+            system_volume
+        )
+
+
     # =====================================================
     # CAMERA LOOP
     # =====================================================
@@ -586,8 +669,9 @@ class HandVolumeWindow(QWidget):
         )
 
 
-        result = hand_landmarker.detect(
-            mp_image
+        result = hand_landmarker.detect_for_video(
+            mp_image,
+            int(time.monotonic() * 1000)
         )
 
 
@@ -630,8 +714,16 @@ class HandVolumeWindow(QWidget):
 
             self.gesture_check_count = 1
 
+            # Stop the previous action immediately while a new gesture is
+            # being confirmed. This prevents volume overshoot.
+            self.confirmed_gesture = "Other gesture"
 
-        if (
+
+        if detected_gesture in ("No hand", "Other gesture"):
+
+            self.confirmed_gesture = detected_gesture
+
+        elif (
             self.gesture_check_count
             >= REQUIRED_GESTURE_CHECKS
         ):
@@ -641,9 +733,7 @@ class HandVolumeWindow(QWidget):
             )
 
 
-        current_volume = (
-            get_mac_volume()
-        )
+        current_volume = self.current_volume
 
 
         # PEACE SIGN = 100
@@ -685,6 +775,11 @@ class HandVolumeWindow(QWidget):
                 current_volume = (
                     new_volume
                 )
+
+                self.current_volume = new_volume
+
+
+                self.last_volume_set_time = time.monotonic()
 
                 self.peace_sign_used = (
                     True
@@ -750,6 +845,11 @@ class HandVolumeWindow(QWidget):
                     new_volume
                 )
 
+                self.current_volume = new_volume
+
+
+                self.last_volume_set_time = time.monotonic()
+
                 self.last_thumbs_up_time = (
                     current_time
                 )
@@ -807,6 +907,11 @@ class HandVolumeWindow(QWidget):
                 current_volume = (
                     new_volume
                 )
+
+                self.current_volume = new_volume
+
+
+                self.last_volume_set_time = time.monotonic()
 
                 self.last_thumbs_down_time = (
                     current_time
@@ -897,6 +1002,18 @@ class HandVolumeWindow(QWidget):
     def closeEvent(self, event):
 
         self.timer.stop()
+
+        self.volume_sync_timer.stop()
+
+        if (
+            self.volume_process.state()
+            != QProcess.ProcessState.NotRunning
+        ):
+            self.volume_process.kill()
+
+            self.volume_process.waitForFinished(
+                250
+            )
 
         self.camera.release()
 

@@ -1,0 +1,4 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/HandTrackingMac/.venv/bin/python",
+  "python.terminal.activateEnvironment": true
+}

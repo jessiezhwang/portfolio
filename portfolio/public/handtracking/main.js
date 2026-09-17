@@ -35,7 +35,7 @@ let lastThumbsUpTime = 0;
 let lastThumbsDownTime = 0;
 let previousGesture = "";
 let gestureCheckCount = 0;
-let confirmedGesture = "Waiting";
+let confirmedGesture = "No hand";
 let peaceSeen = false;
 
 // =============================================

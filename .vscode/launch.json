@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run HandTrackingMac",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/HandTrackingMac/main.py",
+      "python": "${workspaceFolder}/HandTrackingMac/.venv/bin/python",
+      "cwd": "${workspaceFolder}/HandTrackingMac",
+      "console": "integratedTerminal"
+    }
+  ]
+}
