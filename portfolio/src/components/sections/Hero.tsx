@@ -44,7 +44,7 @@ export default function Hero() {
         transition={{ duration: 0.6, delay: 0.2 }}
         className="text-xl sm:text-2xl text-zinc-500 dark:text-zinc-400 font-light mb-10 max-w-xl"
       >
-        Student Developer&nbsp;/&nbsp;AI Enthusiast
+        Student Developer
       </motion.p>
 
       <motion.div
