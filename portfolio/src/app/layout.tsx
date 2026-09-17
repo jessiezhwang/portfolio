@@ -12,12 +12,12 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Jessie Wang — Portfolio",
   description:
-    "Student developer and AI enthusiast. Projects, skills, and a playable Minesweeper game.",
+    "Student developer. Projects, skills, and a playable Minesweeper game.",
   metadataBase: new URL("https://jessiewang.dev"),
   openGraph: {
     title: "Jessie Wang — Portfolio",
     description:
-      "Student developer and AI enthusiast. Explore my projects and skills.",
+      "Student developer. Explore my projects and skills.",
     url: "https://jessiewang.dev",
     siteName: "Jessie Wang",
     locale: "en_US",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Jessie Wang — Portfolio",
-    description: "Student developer and AI enthusiast.",
+    description: "Student developer.",
   },
   icons: {
     icon: "/favicon.ico",
