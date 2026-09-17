@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Blog — Jessie Wang",
-  description: "Writing on code, AI, and building things. Coming soon.",
+  description: "This page is coming soon.",
 };
 
 export default function BlogPage() {
@@ -16,8 +16,7 @@ export default function BlogPage() {
         Coming Soon
       </h1>
       <p className="text-zinc-500 dark:text-zinc-400 text-lg max-w-sm mb-10">
-        I&apos;m planning to write about code, AI, and the things I build.
-        Check back later.
+        I&apos;m This page is coming soon.
       </p>
       <Link
         href="/"
