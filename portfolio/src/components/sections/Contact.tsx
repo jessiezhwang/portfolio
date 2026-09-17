@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -56,6 +57,13 @@ const itemVariants = {
 };
 
 export default function Contact() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("jessiezhwang@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
   return (
     <section id="contact" className="py-28 px-6">
       <div className="max-w-6xl mx-auto">
@@ -92,16 +100,19 @@ export default function Contact() {
               key={link.label}
               variants={itemVariants}
               href={link.href}
+              onClick={link.label === "Email" ? (e) => { e.preventDefault(); handleCopyEmail(); } : undefined}
               target={link.label !== "Email" ? "_blank" : undefined}
               rel={link.label !== "Email" ? "noopener noreferrer" : undefined}
               aria-label={link.label}
+              title={link.label === "Email" ? "Click to copy email" : undefined}
               className={cn(
                 "flex items-center gap-4 w-full sm:w-64 px-6 py-5 rounded-2xl",
                 "bg-white dark:bg-zinc-800/60",
                 "border border-zinc-200 dark:border-zinc-700",
                 "hover:border-indigo-400 dark:hover:border-indigo-500",
                 "hover:shadow-md dark:hover:shadow-zinc-900/40",
-                "transition-all duration-200 group"
+                "transition-all duration-200 group",
+                link.label === "Email" ? "cursor-pointer" : ""
               )}
             >
               <div className="p-2.5 rounded-xl bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 group-hover:bg-indigo-100 dark:group-hover:bg-indigo-900/50 transition-colors">
@@ -116,7 +127,7 @@ export default function Contact() {
                   {link.label}
                 </p>
                 <p className="text-xs text-zinc-400 dark:text-zinc-500 mt-0.5">
-                  {link.description}
+                  {link.label === "Email" && copied ? "Copied!" : link.description}
                 </p>
               </div>
             </motion.a>
