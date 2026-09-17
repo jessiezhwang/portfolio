@@ -24,23 +24,23 @@ function LinkedInIcon({ size = 20 }: { size?: number }) {
 const links = [
   {
     label: "Email",
-    href: "mailto:hello@jessiewang.dev", // TODO: Replace with your real email
+    href: "jessiezhwang@gmail.com", // TODO: Replace with your real email
     icon: Mail,
-    description: "hello@jessiewang.dev",
+    description: "jessiezhwang@gmail.com",
     isLucide: true,
   },
   {
     label: "GitHub",
-    href: "https://github.com/jessiewang", // TODO: Replace with your real GitHub URL
+    href: "https://github.com/jessiezhwang", // TODO: Replace with your real GitHub URL
     SvgIcon: GitHubIcon,
-    description: "github.com/jessiewang",
+    description: "github.com/jessiezhwang",
     isLucide: false,
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com/in/jessiewang", // TODO: Replace with your real LinkedIn URL
+    href: "#", // TODO: Replace with your real LinkedIn URL
     SvgIcon: LinkedInIcon,
-    description: "linkedin.com/in/jessiewang",
+    description: "N/A",
     isLucide: false,
   },
 ];
