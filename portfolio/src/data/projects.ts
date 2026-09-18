@@ -45,7 +45,7 @@ export const projects: Project[] = [
     description: "Coming soon.",
     techStack: [],
     githubUrl: "#",
-    thumbnailColor: "#6b7280",
-    thumbnailTextColor: "#d1d5db",
+    thumbnailColor: "#e4e4e7",
+    thumbnailTextColor: "#71717a",
   },
 ];
