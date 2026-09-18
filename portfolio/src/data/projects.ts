@@ -42,10 +42,10 @@ export const projects: Project[] = [
   },
   {
     title: "N/A",
-    description: "Coming soon.",
+    description: "Work in progress.",
     techStack: [],
     githubUrl: "#",
-    thumbnailColor: "#e4e4e7",
-    thumbnailTextColor: "#71717a",
+    thumbnailColor: "#e0e7ff",
+    thumbnailTextColor: "#4f46e5",
   },
 ];
