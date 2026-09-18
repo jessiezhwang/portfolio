@@ -9,6 +9,8 @@ export interface Project {
   demoVideoUrl?: string;     // TODO: add YouTube/Loom URL when you record a demo
   thumbnailColor: string;
   thumbnailTextColor?: string;
+  thumbnailColorDark?: string;
+  thumbnailTextColorDark?: string;
   bannerImage?: string;
 }
 
@@ -47,5 +49,7 @@ export const projects: Project[] = [
     githubUrl: "#",
     thumbnailColor: "#e0e7ff",
     thumbnailTextColor: "#4f46e5",
+    thumbnailColorDark: "#312e81",
+    thumbnailTextColorDark: "#818cf8",
   },
 ];
