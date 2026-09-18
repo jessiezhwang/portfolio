@@ -41,13 +41,11 @@ export const projects: Project[] = [
     thumbnailTextColor: "#ddd6fe",
   },
   {
-    // TODO: Replace with a real project
-    title: "Project Placeholder",
-    description:
-      "Another future project placeholder. Swap this out once you have more projects to show. Aim for 3–5 total.",
-    techStack: ["TypeScript", "Next.js"],
+    title: "N/A",
+    description: "Coming soon.",
+    techStack: [],
     githubUrl: "#",
-    thumbnailColor: "#059669",
-    thumbnailTextColor: "#a7f3d0",
+    thumbnailColor: "#6b7280",
+    thumbnailTextColor: "#d1d5db",
   },
 ];
