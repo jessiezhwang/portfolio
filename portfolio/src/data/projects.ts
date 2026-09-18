@@ -34,6 +34,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/jessiezhwang/portfolio",
     isPlayable: true,
     isWebDemo: true,
+    bannerImage: "/handtracking/banner.png",
     // TODO: Add a screen recording of the desktop app and paste the URL here
     // demoVideoUrl: "https://youtube.com/...",
     thumbnailColor: "#7c3aed",
