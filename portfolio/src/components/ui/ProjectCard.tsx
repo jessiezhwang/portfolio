@@ -38,15 +38,21 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     >
       {/* Thumbnail */}
       <div
-        className="h-40 flex items-center justify-center relative"
-        style={{ backgroundColor: project.thumbnailColor }}
+        className="h-40 flex items-center justify-center relative overflow-hidden bg-cover bg-center"
+        style={
+          project.bannerImage
+            ? { backgroundImage: `url(${project.bannerImage})` }
+            : { backgroundColor: project.thumbnailColor }
+        }
       >
-        <span
-          className="text-2xl font-bold tracking-tight select-none"
-          style={{ color: project.thumbnailTextColor ?? "#ffffff" }}
-        >
-          {project.title}
-        </span>
+        {!project.bannerImage && (
+          <span
+            className="text-2xl font-bold tracking-tight select-none"
+            style={{ color: project.thumbnailTextColor ?? "#ffffff" }}
+          >
+            {project.title}
+          </span>
+        )}
         {/* Web demo badge */}
         {project.isWebDemo && (
           <span className="absolute top-3 right-3 text-xs font-medium px-2 py-0.5 rounded-full bg-black/30 text-white/80 backdrop-blur-sm">
