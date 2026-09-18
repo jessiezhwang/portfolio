@@ -9,6 +9,7 @@ export interface Project {
   demoVideoUrl?: string;     // TODO: add YouTube/Loom URL when you record a demo
   thumbnailColor: string;
   thumbnailTextColor?: string;
+  bannerImage?: string;
 }
 
 export const projects: Project[] = [
@@ -20,6 +21,7 @@ export const projects: Project[] = [
     // TODO: Replace with your real GitHub repo URL
     githubUrl: "https://github.com/jessiezhwang/portfolio",
     isPlayable: true,
+    bannerImage: "/minesweeper/cover.png",
     thumbnailColor: "#4f46e5",
     thumbnailTextColor: "#c7d2fe",
   },
