@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, Play, Video } from "lucide-react";
 import { type Project } from "@/data/projects";
@@ -38,17 +38,33 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     >
       {/* Thumbnail */}
       <div
-        className="h-40 flex items-center justify-center relative overflow-hidden bg-cover bg-center"
+        className={cn(
+          "h-40 flex items-center justify-center relative overflow-hidden bg-cover bg-center",
+          !project.bannerImage &&
+            "bg-[var(--thumb-bg)] dark:bg-[var(--thumb-bg-dark)]"
+        )}
         style={
           project.bannerImage
             ? { backgroundImage: `url(${project.bannerImage})` }
-            : { backgroundColor: project.thumbnailColor }
+            : ({
+                "--thumb-bg": project.thumbnailColor,
+                "--thumb-bg-dark":
+                  project.thumbnailColorDark ?? project.thumbnailColor,
+              } as CSSProperties)
         }
       >
         {!project.bannerImage && (
           <span
-            className="text-2xl font-bold tracking-tight select-none"
-            style={{ color: project.thumbnailTextColor ?? "#ffffff" }}
+            className="text-2xl font-bold tracking-tight select-none text-[var(--thumb-text)] dark:text-[var(--thumb-text-dark)]"
+            style={
+              {
+                "--thumb-text": project.thumbnailTextColor ?? "#ffffff",
+                "--thumb-text-dark":
+                  project.thumbnailTextColorDark ??
+                  project.thumbnailTextColor ??
+                  "#ffffff",
+              } as CSSProperties
+            }
           >
             {project.title}
           </span>
