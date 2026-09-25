@@ -32,9 +32,9 @@ const links = [
   },
   {
     label: "GitHub",
-    href: "https://github.com/jessiezhwang", // TODO: Replace with your real GitHub URL
+    href: "#", // TODO: Replace with your real GitHub URL
     SvgIcon: GitHubIcon,
-    description: "github.com/jessiezhwang",
+    description: "N/A",
     isLucide: false,
   },
   {
