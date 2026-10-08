@@ -17,14 +17,14 @@ export default function Hero() {
       {/* Subtle background gradient */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(99,102,241,0.08),transparent)] dark:bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(99,102,241,0.12),transparent)]"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(63,117,171,0.08),transparent)] dark:bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(63,117,171,0.12),transparent)]"
       />
 
       <motion.p
         initial={{ opacity: 0, y: 28 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0 }}
-        className="text-sm font-medium tracking-widest uppercase text-indigo-600 dark:text-indigo-400 mb-4"
+        className="text-sm font-medium tracking-widest uppercase text-accent-600 dark:text-accent-400 mb-4"
       >
         Hello, I&apos;m
       </motion.p>
@@ -55,7 +55,7 @@ export default function Hero() {
       >
         <button
           onClick={scrollToProjects}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white text-sm font-medium transition-colors duration-200 shadow-sm"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent-600 hover:bg-accent-700 dark:bg-accent-500 dark:hover:bg-accent-600 text-white text-sm font-medium transition-colors duration-200 shadow-sm"
         >
           View My Work
           <ArrowDown size={15} />

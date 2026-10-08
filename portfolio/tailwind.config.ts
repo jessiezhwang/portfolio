@@ -14,8 +14,17 @@ const config: Config = {
       },
       colors: {
         accent: {
-          DEFAULT: "#4f46e5", // indigo-600
-          dark: "#818cf8",    // indigo-400 for dark mode
+          50: "#f0f5f9",
+          100: "#e1ebf4",
+          200: "#c6d9ec",
+          300: "#aac7e4",
+          400: "#85add6",
+          500: "#6094c7",
+          600: "#3f75ab",
+          700: "#34618d",
+          900: "#213850",
+          DEFAULT: "#3f75ab",
+          dark: "#85add6",
         },
       },
     },

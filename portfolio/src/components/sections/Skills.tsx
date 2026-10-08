@@ -16,7 +16,7 @@ export default function Skills() {
           transition={{ duration: 0.5 }}
           className="mb-14"
         >
-          <p className="text-sm font-medium tracking-widest uppercase text-indigo-600 dark:text-indigo-400 mb-3">
+          <p className="text-sm font-medium tracking-widest uppercase text-accent-600 dark:text-accent-400 mb-3">
             Skills
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-zinc-50">

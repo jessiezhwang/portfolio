@@ -15,7 +15,7 @@ export default function About() {
         >
           {/* Text */}
           <div>
-            <p className="text-sm font-medium tracking-widest uppercase text-indigo-600 dark:text-indigo-400 mb-3">
+            <p className="text-sm font-medium tracking-widest uppercase text-accent-600 dark:text-accent-400 mb-3">
               About Me
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-6 leading-tight">
@@ -47,11 +47,11 @@ export default function About() {
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
               {/* Decorative offset square */}
-              <div className="absolute -top-3 -left-3 w-full h-full rounded-2xl border-2 border-indigo-200 dark:border-indigo-900" />
+              <div className="absolute -top-3 -left-3 w-full h-full rounded-2xl border-2 border-accent-200 dark:border-accent-900" />
               {/* Avatar block */}
-              <div className="relative w-64 h-64 rounded-2xl bg-gradient-to-br from-indigo-100 to-indigo-50 dark:from-zinc-800 dark:to-zinc-700 flex items-center justify-center shadow-md">
+              <div className="relative w-64 h-64 rounded-2xl bg-gradient-to-br from-accent-100 to-accent-50 dark:from-zinc-800 dark:to-zinc-700 flex items-center justify-center shadow-md">
                 {/* TODO: Replace with <Image> once you have a photo */}
-                <span className="text-6xl font-bold text-indigo-300 dark:text-indigo-600 select-none">
+                <span className="text-6xl font-bold text-accent-300 dark:text-accent-600 select-none">
                   JW
                 </span>
               </div>
