@@ -39,7 +39,12 @@ export default function Skills() {
               </h3>
               <div className="flex flex-wrap gap-2">
                 {group.skills.map((skill) => (
-                  <SkillBadge key={skill} label={skill} />
+                  <SkillBadge
+                    key={skill}
+                    label={skill}
+                    hoverColor={group.hoverColor}
+                    hoverColorDark={group.hoverColorDark}
+                  />
                 ))}
               </div>
             </motion.div>
