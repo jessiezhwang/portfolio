@@ -49,7 +49,7 @@ export default function MinesweeperEmbed() {
         {/* Loading spinner shown until iframe fires onLoad */}
         {!loaded && (
           <div className="absolute inset-0 flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 rounded-lg">
-            <Loader2 size={28} className="animate-spin text-indigo-500" />
+            <Loader2 size={28} className="animate-spin text-accent-500" />
           </div>
         )}
         <iframe
@@ -76,7 +76,7 @@ export default function MinesweeperEmbed() {
         href={GAME_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-1.5 text-xs text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors"
+        className="inline-flex items-center gap-1.5 text-xs text-accent-600 dark:text-accent-400 hover:text-accent-700 dark:hover:text-accent-300 transition-colors"
       >
         <ExternalLink size={12} />
         Open in a new tab

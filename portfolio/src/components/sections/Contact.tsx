@@ -75,7 +75,7 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="mb-14 text-center"
         >
-          <p className="text-sm font-medium tracking-widest uppercase text-indigo-600 dark:text-indigo-400 mb-3">
+          <p className="text-sm font-medium tracking-widest uppercase text-accent-600 dark:text-accent-400 mb-3">
             Contact
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-4">
@@ -109,13 +109,13 @@ export default function Contact() {
                 "flex items-center gap-4 w-full sm:w-64 px-6 py-5 rounded-2xl",
                 "bg-white dark:bg-zinc-800/60",
                 "border border-zinc-200 dark:border-zinc-700",
-                "hover:border-indigo-400 dark:hover:border-indigo-500",
+                "hover:border-accent-400 dark:hover:border-accent-500",
                 "hover:shadow-md dark:hover:shadow-zinc-900/40",
                 "transition-all duration-200 group",
                 link.label === "Email" ? "cursor-pointer" : ""
               )}
             >
-              <div className="p-2.5 rounded-xl bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 group-hover:bg-indigo-100 dark:group-hover:bg-indigo-900/50 transition-colors">
+              <div className="p-2.5 rounded-xl bg-accent-50 dark:bg-accent-900/30 text-accent-600 dark:text-accent-400 group-hover:bg-accent-100 dark:group-hover:bg-accent-900/50 transition-colors">
                 {link.isLucide && link.icon ? (
                   <link.icon size={20} strokeWidth={1.75} />
                 ) : link.SvgIcon ? (

@@ -100,7 +100,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           {project.isPlayable && (
             <button
               onClick={() => setShowEmbed((v) => !v)}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white transition-colors duration-150"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-accent-600 hover:bg-accent-700 dark:bg-accent-500 dark:hover:bg-accent-600 text-white transition-colors duration-150"
             >
               <Play size={13} />
               {showEmbed
