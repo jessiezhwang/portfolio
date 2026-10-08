@@ -1,5 +1,6 @@
 "use client";
 
+import { type CSSProperties } from "react";
 import { motion } from "framer-motion";
 import { skillGroups } from "@/data/skills";
 import SkillBadge from "@/components/ui/SkillBadge";
@@ -34,7 +35,16 @@ export default function Skills() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              <h3 className="text-xs font-semibold tracking-widest uppercase text-zinc-400 dark:text-zinc-500 mb-4">
+              <h3 className="flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-zinc-400 dark:text-zinc-500 mb-4">
+                <span
+                  className="w-2 h-2 rounded-full bg-[var(--group-dot)] dark:bg-[var(--group-dot-dark)]"
+                  style={
+                    {
+                      "--group-dot": group.hoverColor,
+                      "--group-dot-dark": group.hoverColorDark,
+                    } as CSSProperties
+                  }
+                />
                 {group.group}
               </h3>
               <div className="flex flex-wrap gap-2">
