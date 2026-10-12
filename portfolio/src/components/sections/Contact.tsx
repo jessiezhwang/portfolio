@@ -32,9 +32,9 @@ const links = [
   },
   {
     label: "GitHub",
-    href: "https://github.com/jessiezhwang",
+    href: "https://github.com/jessiezhwang", // TODO: Replace with your real GitHub URL
     SvgIcon: GitHubIcon,
-    description: "N/A",
+    description: "@jessiezhwang",
     isLucide: false,
   },
   {
@@ -115,8 +115,7 @@ export default function Contact() {
                 link.label === "Email" ? "cursor-pointer" : ""
               )}
             >
-              <div className="p-2.5 rounded-xl bg-accent-50 dark:bg-accent-900/30 text-accent-600 dark:text-accent-400 group-hover:bg-accent-100 dark:group-hover:bg-accent-900/50 transition-colors">
-                {link.isLucide && link.icon ? (
+              <div className="p-2.5 rounded-xl bg-accent-50 dark:bg-accent-900/30 text-accent-600 dark:text-accent-400 group-hover:bg-accent-100 dark:group-hover:bg-accent-900/50 transition-colors">                {link.isLucide && link.icon ? (
                   <link.icon size={20} strokeWidth={1.75} />
                 ) : link.SvgIcon ? (
                   <link.SvgIcon size={20} />
