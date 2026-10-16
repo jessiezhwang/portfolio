@@ -20,7 +20,7 @@ export default function Projects() {
             Projects
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-3">
-            Things I&apos;ve built.
+            My projects.
           </h2>
           <p className="text-zinc-500 dark:text-zinc-400 text-lg max-w-xl">
             My completed projects, all playable/testable in browser!
