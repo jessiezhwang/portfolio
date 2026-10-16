@@ -51,9 +51,9 @@ export const projects: Project[] = [
     description: "Work in progress.",
     techStack: [],
     githubUrl: "#",
-    thumbnailColor: "#e5c95f",
-    thumbnailTextColor: "#5a4c16",
-    thumbnailColorDark: "#937918",
-    thumbnailTextColorDark: "#f6eabb",
+    thumbnailColor: "#fafafa",
+    thumbnailTextColor: "#a1a1aa",
+    thumbnailColorDark: "#18181b",
+    thumbnailTextColorDark: "#71717a",
   },
 ];
